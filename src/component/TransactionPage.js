@@ -7,9 +7,10 @@ class TransactionPage extends Component{
     constructor(props){
         super(props)
         this.state = {
-            qty : [],
-            menuName : [],
-            menuPrice : [],
+            // qty : [],
+            // menuName : [],
+            // menuPrice : [],
+            orderList : [],
             total : 0,
             menuOpt : 'F',
             isShowingForm : false,
@@ -37,13 +38,11 @@ class TransactionPage extends Component{
     }
 
     handleFormPopOut = (id) => {
-        const index = this.props.menu.menus.findIndex(menu => menu.id === id);
-        let namaMenu = this.props.menu.menus[index].nama
-        let hargaMenu = this.props.menu.menus[index].harga
+        const index = this.props.menu.menus.findIndex(m => m.id === id);
         this.setState({
             isShowingForm : true,
-            menuRead : namaMenu,
-            priceRead : hargaMenu,
+            menuRead : this.props.menu.menus[index].nama,
+            priceRead : this.props.menu.menus[index].harga,
         })
     }
 
@@ -67,10 +66,14 @@ class TransactionPage extends Component{
     }
 
     onAddOrder = () => {
+        let newItem = {
+            qty : this.state.qtyRead,
+            menuName : this.state.menuRead,
+            menuPrice : this.state.priceRead,
+        }
+
         this.setState({
-            qty : [...this.state.qty, this.state.qtyRead],
-            menuName : [...this.state.menuName, this.state.menuRead],
-            menuPrice : [...this.state.menuPrice, this.state.priceRead],
+            orderList : [...this.state.orderList, newItem],
             isShowingForm : false,
             menuRead : '',
             priceRead : 0,
@@ -104,9 +107,9 @@ class TransactionPage extends Component{
                         <div>
                             {this.state.menuOpt === 'F' ? 
                             dbMenuFood.map(m =>
-                                <button onClick={this.handleFormPopOut(m.id)}>{m.nama}</button>
+                                <button onClick={() => this.handleFormPopOut(m.id)}>{m.nama}</button>
                                 ) : dbMenuDrink.map(m =>
-                                    <button onClick={this.handleFormPopOut(m.id)}>{m.nama}</button>
+                                    <button onClick={ () => this.handleFormPopOut}>{m.id}</button>
                                     )}
                             {this.state.isShowingForm &&
                                 <div className='qtyInputStyle'>
@@ -114,10 +117,16 @@ class TransactionPage extends Component{
                                     <input className="inputColumnStyle" type="number" onChange={this.handleChangeQty} value={this.state.qtyRead} min="1" max="999"/>
                                     <button className="buttonStyle" onClick={this.onAddOrder}>Add</button>
                                     <button className="buttonStyle" onClick={this.closeFormPopOut}>Cancel</button>
-
                                 </div>
                             }
+                            <h1>Transaction</h1>
+                            <ul>
+                                {this.state.orderList.map(OL =>
+                                    <li>{OL.qty} {OL.menuName} {OL.menuPrice}</li>
+                                )}
+                            </ul>
                         </div>
+    
                         
                     </div>
                 </div>

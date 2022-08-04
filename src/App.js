@@ -17,7 +17,7 @@ class App extends Component {
     constructor(props){
         super(props)
         this.state={
-            page : '5',
+            page : '1',
             table : [{id: 'T001', status: 'Available'}, {id: 'T002', status: 'Unavailable'}, {id :'T003', status: 'Available'}],
         }
     }
