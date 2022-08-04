@@ -12,7 +12,6 @@ import TableDelete from './component/TableDelete';
 import MenuAddRedux from './MenuRedux/MenuAddRedux';
 import MenuDeleteRedux from './MenuRedux/MenuDeleteRedux';
 import TransactionPage from './component/TransactionPage';
-import OrderForm from './component/TransactionForm/InputForm';
 
 class App extends Component {
     constructor(props){
@@ -64,7 +63,6 @@ class App extends Component {
                         return <TableDelete onNavigate={this.navigation} dataTable={this.state.table} hapusTable={this.tableDelete}/>
                     case '5':
                         return <TransactionPage onNavigate={this.navigation}/>
-                        // return <OrderForm onNavigate={this.navigation}/>
                     default:
                         return <Login onNavigate={this.navigation}/>
                 }
