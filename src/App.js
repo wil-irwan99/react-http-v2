@@ -1,75 +1,48 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Component} from "react";
-import Login from './component/Login';
-import HomePage from './component/HomePage';
-import MenuPage from './component/MenuPage';
-import TablePage from './component/TablePage';
-import MenuAdd from './component/MenuAdd';
-import MenuDelete from './component/MenuDelete';
-import TableAdd from './component/TableAdd';
-import TableDelete from './component/TableDelete';
-import MenuAddRedux from './MenuRedux/MenuAddRedux';
-import MenuDeleteRedux from './MenuRedux/MenuDeleteRedux';
-import TransactionPage from './component/TransactionPage';
+import {useState} from "react";
+import MoreEffect from './component/MoreEffect';
+import ThemeModifier from './component/ThemeModifier';
+import DummyView from './component/DummyView';
+import { HookComponent } from './component/HookComponent';
+import { DepsProvider } from './context/depContext';
+import moreEffectService from "./services/moreEffectService"
+import MoreEffectHooks from './component/MoreEffectHooks';
+import MyHook from './component/MyHook/MyHook';
 
-class App extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            page : '1',
-            table : [{id: 'T001', status: 'Available'}, {id: 'T002', status: 'Unavailable'}, {id :'T003', status: 'Available'}],
-        }
-    }
+const App = () => {
+    //const [dark, setDark] = useState(false)
+    // return (
+    //     <div style={{backgroundColor : dark ? 'black' : 'white'}}>
+    //         <p style={{color : dark ? 'white' : 'black'}}>Color : {dark ? 'black' : 'white'}</p>
+    //         <button onClick={() => setDark(!dark)}>
+    //             set Theme {dark ? 'white' : 'black'}
+    //         </button>
+    //     </div>
+    // )
 
-    navigation = (value) => {
-        this.setState({
-            page : value
-        })
-    }
+    // return (
+    //     <MoreEffect/>
+    // )
 
-    tableAdd = (tableBaru) => {
-        this.setState({
-            table : [...this.state.table, tableBaru],
-        })
-    }
+    // const [pageID, setPageId] = useState(0)
+    // return(
+    //     pageID === 0 ? <ThemeModifier onNavigate={() => setPageId(1)}/> : <DummyView onNavigate={() => setPageId(0)}/>
+    // )
 
-    tableDelete = (tableTerbaru) => {
-        this.setState({
-            table : tableTerbaru,
-        })
-    }
+    //return <HookComponent/>
 
-    render(){
-        return(
-            <>
-            {(() => {
-                switch(this.state.page) {
-                    case '1':
-                        return <Login onNavigate={this.navigation}/>
-                    case '2':
-                        return <HomePage onNavigate={this.navigation}/>
-                    case '3':
-                        return <MenuPage onNavigate={this.navigation}/>
-                    case '3.1':
-                        return <MenuAddRedux onNavigate={this.navigation}/>
-                    case '3.2':
-                        return <MenuDeleteRedux onNavigate={this.navigation}/>
-                    case '4':
-                        return <TablePage onNavigate={this.navigation} dataTable={this.state.table}/>
-                    case '4.1':
-                        return <TableAdd onNavigate={this.navigation} dataTable={this.state.table} tambahTable={this.tableAdd}/>
-                    case '4.2':
-                        return <TableDelete onNavigate={this.navigation} dataTable={this.state.table} hapusTable={this.tableDelete}/>
-                    case '5':
-                        return <TransactionPage onNavigate={this.navigation}/>
-                    default:
-                        return <Login onNavigate={this.navigation}/>
-                }
-            })()}
-            </>
-        )
-    }
+    // return(
+    //     <DepsProvider services={{
+    //         moreEffectService: moreEffectService()
+    //     }}>
+    //         <MoreEffectHooks/>
+    //     </DepsProvider>
+    // )
+    
+    return(
+        <MyHook/>
+    )
 }
 
 export default App;
