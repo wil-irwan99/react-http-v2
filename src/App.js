@@ -9,6 +9,8 @@ import { DepsProvider } from './context/depContext';
 import moreEffectService from "./services/moreEffectService"
 import MoreEffectHooks from './component/MoreEffectHooks';
 import MyHook from './component/MyHook/MyHook';
+import ProductForm from './features/product/ProductForm';
+import ProductView from './component/ProductView';
 
 const App = () => {
     //const [dark, setDark] = useState(false)
@@ -40,9 +42,22 @@ const App = () => {
     //     </DepsProvider>
     // )
     
-    return(
-        <MyHook/>
-    )
+    // return(
+    //     <MyHook/>
+    // )
+    
+    // return <MyHook/>
+
+    // return(
+    //     <div className='App'>
+    //         <ProductForm/>
+    //     </div>
+    // )
+
+    return <ProductView/>
+
+    //return <ProductForm/>
+
 }
 
 export default App;
