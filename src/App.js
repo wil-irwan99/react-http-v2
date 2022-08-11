@@ -5,6 +5,7 @@ import axios from "axios";
 import JsonPlaceHolderView from './features/JsonPlaceHolder/JsonPlaceHolderView';
 import ProductView from './features/Product/ProductView';
 import LoginView from './features/Login/LoginView';
+import MenuView from './features/Menu/MenuView';
 
 // const client = axios.create({
 //   baseURL : 'https://jsonplaceholder.typicode.com'
@@ -59,11 +60,17 @@ function App() {
   //   </div>
   // );
 
-  return(
-    <>
-      <LoginView/>
-    </>
-  )
+  // return(
+  //   <>
+  //     <LoginView/>
+  //   </>
+  // )
+
+  return (
+    <div>
+      <MenuView/>
+    </div>
+  );
 
 
 }

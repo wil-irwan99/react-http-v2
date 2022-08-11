@@ -27,7 +27,12 @@ const ProductView = () => {
             {isLoading && <div>Loading</div>}
             <ul>
                 {products.map((product) => {
-                    return <li key={product.id}>{product.productName}</li>
+                    return (
+                    <>
+                        <li key={product.id}>{product.productName}</li>
+                        <li style={{"list-style": "none"}}>{product.productInfo}</li>
+                    </>
+                    )
                 })}
             </ul>
         </div>
